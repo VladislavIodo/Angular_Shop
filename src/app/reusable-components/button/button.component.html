@@ -1,0 +1,6 @@
+<button class="button button_decoration"
+        [class._mainButton]="type === 'mainButton'"
+        [class._deleteButton]="type === 'deleteButton'"
+        [disabled]="disabled">
+  <span class="button__title">{{title}}</span>
+</button>

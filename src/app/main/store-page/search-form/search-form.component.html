@@ -1,0 +1,13 @@
+<div *ngIf="search?.invalid && (search?.dirty || search?.touched)"
+     class="modal-main__validations">
+  <div *ngIf="search?.errors?.['required']">Для поиска введите название товара!</div>
+</div>
+<form class="search-form"
+      *ngIf="searchForm"
+      [formGroup]="searchForm">
+  <input type="text"
+         class="search-form__input"
+         name="search-form__input"
+         formControlName="search">
+  <app-button class="search-form__button" title="Поиск" (click)="searchProduct()"></app-button>
+</form>

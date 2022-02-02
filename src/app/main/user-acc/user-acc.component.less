@@ -1,0 +1,44 @@
+@import "../../../assets/variables/variables";
+
+.user {
+  display: flex;
+  flex-direction: column;
+
+  &-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 15px;
+  }
+
+  &-img {
+    max-width: 250px;
+    width: 100%;
+    padding: 15px;
+    border: 3px solid @secondaryColor;
+    border-radius: 15px;
+  }
+
+  &-button_margin {
+    margin: 10px;
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+    padding: 15px;
+    border: 3px solid #4D3C35;
+    border-radius: 35px;
+
+    &_main-button {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      /* align-items: center; */
+      justify-content: center;
+    }
+  }
+}

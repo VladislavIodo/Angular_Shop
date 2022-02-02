@@ -1,0 +1,26 @@
+<section class="container user">
+  <div class="user-nav">
+    <div class="user-nav_main-button">
+      <app-button class="user-button_margin"
+                  [title]=userButton.orderButton
+                  routerLink="/user/orders"></app-button>
+      <app-button class="user-button_margin"
+                  [title]=userButton.settingsButton
+                  routerLink="/user/settings"></app-button>
+    </div>
+    <app-button class="user-button_margin"
+                type="deleteButton"
+                [title]=userButton.logoutButton
+                (click)="leaveAccount()"></app-button>
+  </div>
+  <div class="user-main">
+    <div class="user-img">
+      <img src="{{avatar}}" alt="user-img">
+    </div>
+    <div class="user-info">
+      <h3 class="user-info__name">{{userData.userName}}</h3>
+      <h4 class="user-info__surName">{{userData.email}}</h4>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</section>

@@ -1,0 +1,41 @@
+@import "../../../assets/variables/variables";
+
+.order {
+  &_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &-font {
+    font-family: @ruFonts;
+  }
+  &-button_flex{
+    display: flex;
+    max-width: 196px;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+.mat-form {
+  &-field {
+    margin-top: 16px;
+  }
+}
+
+.mat-stepper {
+  &-next, &-previous {
+    border-radius: 15px;
+    border: 3px solid @secondaryColor;
+  }
+
+  &-horizontal, &-vertical {
+    background-color: @mainColor;
+    border-radius: 35px;
+    border: 3px solid @secondaryColor;
+  }
+}
+
+.mat-radio-button {
+  padding: 10px;
+}

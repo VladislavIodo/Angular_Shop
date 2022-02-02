@@ -1,0 +1,131 @@
+@import "../../../../assets/variables/variables";
+
+.order {
+  &-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+
+    max-width: 585px;
+    width: 100%;
+    height: 239px;
+
+    padding: 15px;
+    color: @secondaryColor;
+
+    &__count, &__price {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      padding: 10px;
+
+      max-width: 131px;
+      width: 100%;
+      height: 113px;
+
+      border: 3px solid #4D3C35;
+      border-radius: 25px;
+    }
+  }
+
+  &-customerInformation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-top: 3px solid @secondaryColor;
+    border-bottom: 3px solid @secondaryColor;
+  }
+
+  &_padding + &_padding {
+    padding-top: 15px;
+  }
+
+  &-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 25px;
+    border-bottom: 3px dashed;
+
+    &__img {
+      max-width: 100px;
+      width: 100%;
+      height: 100px;
+    }
+  }
+
+  &__total-price {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  &-status-change {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 25px;
+  }
+
+  tr&-detail-row {
+    height: 0;
+  }
+
+  tr&-row:not(&-expanded-row):hover {
+    background: @secondaryColor;
+  }
+
+  tr&-row:not(&-expanded-row):active {
+    background: @secondaryColor;
+  }
+
+  &-row td {
+    border-bottom-width: 0;
+  }
+
+  &-detail {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-description {
+    padding: 16px;
+
+    &-attribution {
+      opacity: 0.5;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  background-color: @mainColor;
+  cursor: pointer;
+}
+
+.orders-table_position::-webkit-scrollbar {
+  width: 0;
+}
+
+.orders-table_position {
+  padding: 15px;
+  max-width: 1920px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.pagination {
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-style /deep/ .ngx-pagination .current {
+    background: @secondaryColor;
+  }
+}

@@ -1,0 +1,54 @@
+@import "./../../assets/variables/variables";
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &_border {
+    border-bottom: 3px solid;
+  }
+
+  &_fixed {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: @mainColor;
+  }
+}
+
+.container-header {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  &_flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-header_flex {
+    justify-content: space-around;
+  }
+}
+
+.nav-list {
+  display: flex;
+  font-family: @ruFonts;
+  font-size: 16px;
+
+  &__item + &__item {
+    margin-left: 25px;
+  }
+}
+
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+}

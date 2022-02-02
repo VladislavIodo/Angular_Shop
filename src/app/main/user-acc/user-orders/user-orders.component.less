@@ -1,0 +1,52 @@
+@import "../../../../assets/variables/variables";
+
+.orders-table_position::-webkit-scrollbar {
+  width: 0;
+}
+
+.orders-table_position {
+  padding: 15px;
+  max-width: 1920px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+.mat-table {
+  background: @mainColor;
+  font-family: @ruFonts;
+  border: 3px solid @secondaryColor;
+}
+
+.mat-cell, .mat-footer-cell, .mat-header-cell {
+  color: @secondaryColor;
+}
+
+.mat-paginator {
+  font-family: @ruFonts;
+  background: @mainColor;
+  color: #4D3C35;
+  border: 3px solid @secondaryColor;
+  border-top: none;
+}
+
+.back-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px;
+}
+
+.pagination {
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-style /deep/ .ngx-pagination .current {
+    background: @secondaryColor;
+  }
+}

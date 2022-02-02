@@ -1,0 +1,94 @@
+<mat-stepper class="order-font my-alternate-theme" [linear]="disabledStepper"
+             [orientation]="(stepperOrientation | async)!">
+  <mat-step [stepControl]="orderFormName"
+            errorMessage="обязательны для заполнения">
+    <form [formGroup]="orderFormName" class="order_flex">
+      <ng-template matStepLabel><span class="order-font_color">Контактные данные</span></ng-template>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ваше имя</mat-label>
+        <input matInput
+               placeholder="Ваше имя"
+               formControlName="name"
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ваша фамилия</mat-label>
+        <input matInput
+               placeholder="Ваша фамилия"
+               formControlName="surname"
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput
+               placeholder="Email"
+               formControlName="email">
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="orderFormAddress" errorMessage="обязательны для заполнения">
+    <form [formGroup]="orderFormAddress" class="order_flex">
+
+      <ng-template matStepLabel>Адрес и время доставки</ng-template>
+      <mat-form-field appearance="fill" class="my-alternate-theme">
+        <mat-label>Выбери свой город</mat-label>
+        <mat-select formControlName="city">
+          <mat-option></mat-option>
+          <mat-optgroup *ngFor="let group of cityGroups" [label]="group.name"
+                        [disabled]="group.disabled" class="my-alternate-theme">
+            <mat-option *ngFor="let city of group.city" [value]="city.value">
+              {{city.viewValue}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Введите точный адрес: улица, дом/кв</mat-label>
+        <input matInput
+               placeholder="Введите точный адрес"
+               formControlName="street"
+               [matTooltipPosition]="position[0]"
+               matTooltip="Введите адрес в формате: ул. 'Название улицы',
+                строение № 'Номер строения', подъезд № 'номер подъезда', кв. № 'номер квартиры'.
+                В случае отсутствия номера подъезда и(или) квартиры установите -">
+      </mat-form-field>
+      <div class="order-button_flex">
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="orderFormPayment" errorMessage="обязательны для заполнения">
+    <form [formGroup]="orderFormPayment" class="order_flex">
+
+      <ng-template matStepLabel>Способ оплаты</ng-template>
+      <mat-radio-group aria-label="Select an option" formControlName="payment" class="order_flex">
+        <mat-radio-button value="creditCard">Безналичный расчет</mat-radio-button>
+        <mat-radio-button value="cash">Наличный расчет</mat-radio-button>
+      </mat-radio-group>
+
+      <div class="order-button_flex">
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext
+                [disabled]="!orderFormPayment.valid"
+                *ngIf="isAllOrder() && orderFormPayment.valid"
+                (click)="orderFormPayment.valid && buyProduct()">Купить
+        </button>
+
+        <button mat-button matStepperNext
+                [disabled]="!orderFormPayment.valid"
+                *ngIf="!isAllOrder() && orderFormPayment.valid"
+                (click)="orderFormPayment.valid && buyProductAll()">Купить
+        </button>
+      </div>
+    </form>
+  </mat-step>
+</mat-stepper>

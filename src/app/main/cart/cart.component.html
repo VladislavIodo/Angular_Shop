@@ -1,0 +1,43 @@
+<section class="container cart cart_border">
+  <div *ngIf="getOfferInCart().length !== 0; else cartEmpty" class="cart-main">
+    <div *ngFor="let offer of getOfferInCart()" class="cart__offer offer_border">
+      <img src="{{offer.img}}" alt="#" class="cart__img">
+      <div class="offer-info">
+        <p class="offer-info__item">{{offer.name}}</p>
+        <p class="offer-info__item">артикул: {{offer.partNumber}}</p>
+      </div>
+      <div class="offer-sale">
+        <p class="offer-info__item offer-sale_price">{{offer.price}} $</p>
+        <div class="offer-sale_flex">
+          <app-button class="offer-button_margin"
+                      [title]=cartButton.titleOffer
+                      (click)="openDialogOrderToBuy(offer)">
+          </app-button>
+          <app-button class="offer-button_margin"
+                      type="deleteButton"
+                      [title]=cartButton.titleOfferDel
+                      (click)="deleteOfferFromCart(offer)">
+          </app-button>
+        </div>
+      </div>
+    </div>
+    <div class="offer__total-price">
+      <h3>{{totalPrice}}$</h3>
+      <div class="offer__total-button">
+        <app-button class="offer-button_margin"
+                    [title]=cartButton.titleOfferAll
+                    (click)="openDialogOrderToBuyAll()"></app-button>
+        <app-button class="offer-button_flex offer-button_margin"
+                    type="deleteButton"
+                    [title]=cartButton.titleOfferDel
+                    (click)="deleteAllOfferFromCart()">
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <ng-template #cartEmpty class="cart_empty">
+    <p>Скорее беги в каталог, клацай на все, что видишь и ожидай БЕСПЛАТНУЮ доставку!!! </p>
+  </ng-template>
+</section>
+
+

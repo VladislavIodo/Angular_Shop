@@ -1,0 +1,15 @@
+<section class="container order order_border">
+  <div class="order-main">
+    <div *ngFor="let details of orderDetails" class="order__details details_border">
+      <img src="{{details.img}}" alt="#" class="order__img">
+      <div class="details-info">
+        <p class="details-info__item">{{details.name}}</p>
+        <p class="details-info__item">артикул: {{details.partNumber}}</p>
+      </div>
+      <div class="details-sale">
+        <p class="details-info__item details-sale_price">{{details.price}} $</p>
+      </div>
+    </div>
+      <p class="details-info__item details-sale_price">К оплате: {{totalPrice}} $</p>
+  </div>
+</section>

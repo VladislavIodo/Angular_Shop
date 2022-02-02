@@ -1,0 +1,25 @@
+<section class="customer-choice">
+  <article class="container choice__wrapper">
+    <div class="choice__text">
+      <h1 class="wrapper__text">Выбор клиентов</h1>
+    </div>
+    <div class="choice-swiper">
+      <swiper
+        [slidesPerView]="2"
+        [breakpoints]="breakpoints"
+        [autoplay]="{
+          delay: 2000,
+          disableOnInteraction: false
+        }"
+        [pagination]="{
+          clickable: true
+        }"
+        [navigation]="true"
+        class="mySwiper"  *ngIf="_offers$ | async as offers">
+        <ng-template  *ngFor="let offer of offers.slice(0,3)" swiperSlide>
+          <app-offer [offers]="offer"></app-offer>
+        </ng-template>
+      </swiper>
+    </div>
+  </article>
+</section>

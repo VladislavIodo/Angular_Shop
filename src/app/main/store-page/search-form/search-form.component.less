@@ -1,0 +1,46 @@
+@secondaryColor: #4D3C35;
+@mainColor: #EBE2E2;
+@ruFonts: 'Revalia', cursive;
+@enFonts: 'Dangrek', cursive;
+
+.search-form {
+  display: flex;
+  padding-top: 5px;
+
+  &__input {
+    padding: 15px;
+    max-width: 150px;
+    width: 100%;
+    height: 40px;
+    margin-right: 5px;
+    border-radius: 25px;
+    background-color: @mainColor;
+  }
+
+  &__button {
+    position: relative;
+    max-width: 25px;
+    width: 100%;
+    height: 25px;
+
+    border-radius: 50%;
+    background-color: @mainColor;
+  }
+
+  &__button::after {
+    position: absolute;
+    content: "";
+    max-width: 25px;
+    width: 100%;
+    height: 3px;
+    bottom: -20px;
+    left: 57px;
+    transform: rotate(45deg);
+
+    background-color: @secondaryColor;
+  }
+}
+
+
+
+

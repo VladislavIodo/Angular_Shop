@@ -1,0 +1,106 @@
+<div class="order-info my-alternate-theme">
+  <div class="order-info__count">
+    <p>Количество заказов:</p>
+    <h1>{{totalOrders}}</h1>
+  </div>
+  <div class="order-info__price">
+    <p>Продано на:</p>
+    <h1>{{totalOrdersPrice}}$</h1>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>c ДД.ММ.ГГГГ до ДД.ММ.ГГГГ</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="С ДД.ММ.ГГГГ"
+             (dateInput)="getOrdersByDate()" (dateChange)="getOrdersByDate()">
+      <input matEndDate formControlName="end" placeholder="До ДД.ММ.ГГГГ"
+             (dateInput)="getOrdersByDate()" (dateChange)="getOrdersByDate()">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="range.controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+    <mat-error *ngIf="range.controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="orders-table_position">
+  <table mat-table
+         [dataSource]="dataSource | paginate:
+        { itemsPerPage: 5, currentPage: page}"
+         multiTemplateDataRows
+         class="mat-elevation-z24 my-alternate-theme"
+         *ngIf="orders | async as orders">
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+        <div class="order-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+          <div class="order-customerInformation">
+            <div class="order-recipient">
+              <h3 class="order_padding">Данные получателя:</h3>
+              <p class="order_padding">Имя: {{element.name}}</p>
+              <p class="order_padding">Фамилия: {{element.surname}}</p>
+              <p class="order_padding">Email: {{element.email}}</p>
+            </div>
+            <div class="order-delivery">
+              <h3 class="order_padding">Адрес доставки:</h3>
+              <p class="order_padding">Город: {{element.city}}</p>
+              <p class="order_padding">Улица: {{element.street}}</p>
+            </div>
+            <div class="order-payment">
+              <h3 class="order_padding">Способ оплаты:</h3>
+              <p class="order_padding">Оплата: {{element.payment}}</p>
+            </div>
+          </div>
+
+          <div class="order-product" *ngFor="let product of element['product']">
+            <img src="{{product.img}}" class="order-product__img" alt="product">
+            <p>Наименование товара: {{product.name}}</p>
+            <p>Артикул товара: {{product.partNumber}}</p>
+            <p>Стоимость товара: {{product.price}}$</p>
+          </div>
+
+          <div class="order-status-change">
+            <mat-form-field appearance="fill">
+              <mat-label>Изменить статус заказа</mat-label>
+              <mat-select [(value)]="element.status" (valueChange)="editStatus(element._id, element)">
+                <mat-optgroup class="my-alternate-theme">
+                  Установите новый статус!
+                  <mat-option value="Заказ оформлен">Заказ оформлен</mat-option>
+                  <mat-option value="Заказ отправлен">Заказ отправлен</mat-option>
+                  <mat-option value="Заказ доставлен">Заказ доставлен</mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="order__total-price">К оплате: {{element.totalPrice}}$</div>
+          </div>
+
+          <div class="order-description">
+            Дата заказа:
+            <span class="order-description-attribution"> {{element.date | date}}</span>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+        class="order-row"
+        [class.order-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="order-detail-row"></tr>
+  </table>
+</div>
+
+<pagination-controls
+  (pageChange)="(page = $event)"
+  class="pagination-style">
+</pagination-controls>

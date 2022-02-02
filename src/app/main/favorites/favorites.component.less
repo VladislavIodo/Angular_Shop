@@ -1,0 +1,22 @@
+@import "../../../assets/variables/variables";
+
+.favorites {
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+
+  margin: 25px auto;
+  padding: 15px;
+  &_grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-row-gap: 25px;
+    grid-column-gap:25px;
+    justify-items: center;
+    align-items: center;
+  }
+  &_border {
+    border: 3px solid @secondaryColor;
+    border-radius: 25px;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="admin">
+  <mat-drawer-container class="admin-window">
+    <mat-drawer mode="side" opened class="admin-panel">
+      <div class="admin-panel-sidebar">
+        <div class="admin-info">
+          <p class="info-title">Имя администратора:</p>
+          <p class="info-title">{{userData.userName}}</p>
+        </div>
+        <app-button [title]=adminButton.titleAddOffer class="button" [routerLink]="'productManager'"></app-button>
+        <app-button title="Продажи" class="button" routerLink="/admin/orders"></app-button>
+        <app-button title="Статистика" class="button" routerLink="/admin/statistics"></app-button>
+        <app-button title="Склад" class="button" routerLink="/admin/warehouse"></app-button>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>s
+  </mat-drawer-container>
+</div>

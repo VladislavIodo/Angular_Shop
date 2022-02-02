@@ -1,0 +1,46 @@
+<header class="header header_border header_fixed">
+  <nav class="nav-wrapper">
+    <div class="container container-header container-header_flex">
+
+      <div class="nav-bar">
+        <ul class="nav-list">
+          <li class="nav-list__item">
+            <a href="#" class="nav-list__link" routerLink="/about">О нас</a>
+            <span class="nav-list__link_decoration"></span>
+          </li>
+          <li class="nav-list__item">
+            <a href="#" class="nav-list__link" routerLink="/store">Каталог</a>
+            <span class="nav-list__link_decoration"></span>
+          </li>
+        </ul>
+      </div>
+
+      <app-logo [logoName]="logoNameItem"></app-logo>
+
+      <div class="nav-bar">
+        <ul class="nav-list">
+          <li class="nav-list__item" matBadge={{numberFavorites}}>
+            <a routerLink="/favorites">
+              <img src="assets/img/icons/heart.svg" alt="heart">
+            </a>
+          </li>
+          <li class="nav-list__item" matBadge={{numberGoods}}>
+            <a routerLink="/cart">
+              <img src="assets/img/icons/shopping-cart.svg" alt="shopping-cart">
+            </a>
+          </li>
+          <button class="nav-list__item" mat-button [matMenuTriggerFor]="menu">
+            <img *ngIf="!isLogIn()" src="assets/img/icons/account.svg" alt="account">
+            <img *ngIf="isLogIn()" src="{{avatar}}" alt="account" class="user-avatar">
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngIf="!logIn" (click)="openDialogLogIn()">Войти в аккаунт</button>
+              <button mat-menu-item *ngIf="logIn" (click)="openAccount()">Мой аккаунт</button>
+              <button mat-menu-item *ngIf="!logIn" (click)="openDialogReg()">Создать аккаунт</button>
+              <button mat-menu-item *ngIf="logIn" (click)="leaveAccount()">Выйти из аккаунта</button>
+            </mat-menu>
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

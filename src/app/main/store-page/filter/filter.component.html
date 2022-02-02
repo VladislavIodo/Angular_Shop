@@ -1,0 +1,36 @@
+<section class="container filter filter filter_border filter_flex">
+  <div class="filter-nav">
+    <div class="types-furniture" *ngFor="let itemFilter of itemsFilter">
+      <input type="checkbox" class="types-furniture__checkbox {{itemFilter.isChecked ? 'checked' : ''}}"
+             id="{{itemFilter.id}}"
+             name="{{itemFilter.typesFurniture}}"
+             value="yes"
+             (change)="getCategory(itemFilter)">
+      <label for="{{itemFilter.id}}">{{itemFilter.typesFurniture}}</label>
+    </div>
+  </div>
+  <app-button *ngIf="reset" type="deleteButton" title="Сбросить" (click)="resetFilter()" ></app-button>
+  <div class="filter-price my-alternate-theme">
+      <label>{{minValue}}$</label>
+      <mat-slider
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="{{maxValue}}"
+        [(ngModel)]="minValue"
+        (change)="getOfferByPrice()"
+      ></mat-slider>
+      <mat-slider
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="{{minValue}}"
+        max="5000"
+        [(ngModel)]="maxValue"
+        aria-label="units"
+        (change)="getOfferByPrice()"></mat-slider>
+      <label>{{maxValue}}$</label>
+  </div>
+  <app-search-form></app-search-form>
+</section>

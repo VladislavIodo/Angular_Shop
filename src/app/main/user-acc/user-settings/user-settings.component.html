@@ -1,0 +1,82 @@
+<div class="container settings">
+  <form class="settings-email settings_border settings_margin"
+        *ngIf="settingsEmailForm"
+        [formGroup]="settingsEmailForm">
+    <h2 class="setting-email__title settings_border-bottom settings_margin">
+      Настройки почты
+    </h2>
+
+    <h3 class="setting-email__subtitle settings_margin">
+      Текущая почта: <h2>{{userData.email}}</h2>
+    </h3>
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="settings__validations">
+      <div *ngIf="email?.errors?.['required']">Поле обязательно для заполнения!</div>
+      <div *ngIf="email?.errors?.['email']">Email введен не корректно!</div>
+    </div>
+    <input type="email"
+           placeholder="Введите новый адрес Email"
+           class="settings__input settings_margin"
+           formControlName="email">
+    <form *ngIf="settingsEmailForm.valid && stateRecaptcha">
+      <ngx-recaptcha2
+        [siteKey]="siteKey"
+        (success)="emailRecaptchaSuccess($event)"
+        (reset)="resetRecaptcha">
+      </ngx-recaptcha2>
+    </form>
+    <app-button *ngIf="settingsEmailForm.valid"
+                (click)="changeEmail()" title="Сохранить" type="mainButton" class="settings_margin"></app-button>
+  </form>
+
+  <form class="settings-password settings_border settings_margin"
+        *ngIf="settingsPasswordForm"
+        [formGroup]="settingsPasswordForm">
+    <h2 class="settings-password__title settings_border-bottom settings_margin">
+      Сменить пароль
+    </h2>
+
+    <div *ngIf="oldPassword?.invalid && (oldPassword?.dirty || oldPassword?.touched)" class="settings__validations">
+      <div *ngIf="oldPassword?.errors?.['required']">Поле обязательно для заполнения!</div>
+      <div *ngIf="oldPassword?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+      <div *ngIf="oldPassword?.errors?.['maxlength']">Введённый пароль слишком длинный!</div>
+    </div>
+    <input type="password"
+           placeholder="Введите старый пароль"
+           class="settings__input  settings_margin"
+           formControlName="oldPassword">
+
+    <div *ngIf="newPassword?.invalid && (newPassword?.dirty || newPassword?.touched)" class="settings__validations">
+      <div *ngIf="newPassword?.errors?.['required']">Поле обязательно для заполнения!</div>
+      <div *ngIf="newPassword?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+      <div *ngIf="newPassword?.errors?.['maxlength']">Введённый пароль слишком длинный!</div>
+    </div>
+    <input type="password"
+           placeholder="Введите новый пароль"
+           class="settings__input  settings_margin"
+           formControlName="newPassword">
+
+    <div *ngIf="repeatPassword?.invalid && (repeatPassword?.dirty || repeatPassword?.touched)"
+         class="settings__validations">
+      <div *ngIf="repeatPassword?.errors?.['required']">Повторите пароль!</div>
+      <div *ngIf="repeatPassword?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+      <div *ngIf="repeatPassword?.errors?.['maxlength']">Введённый пароль слишком длинный!</div>
+      <div *ngIf="repeatPassword?.errors?.['compare']">Пароли не совпадают!</div>
+    </div>
+    <input type="password"
+           placeholder="Повторите новый пароль"
+           class="settings__input  settings_margin"
+           formControlName="repeatPassword">
+
+    <form *ngIf="settingsPasswordForm.valid && stateRecaptcha">
+      <ngx-recaptcha2
+        *ngIf="settingsPasswordForm.valid && stateRecaptcha"
+        [siteKey]="siteKey"
+        (success)="passwordRecaptchaSuccess($event)"
+        (reset)="resetRecaptcha">
+      </ngx-recaptcha2>
+    </form>
+
+    <app-button *ngIf="settingsPasswordForm.valid"
+                (click)="changePassword()" title="Сохранить" class="settings_margin"></app-button>
+  </form>
+</div>

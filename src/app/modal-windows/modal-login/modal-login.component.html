@@ -1,0 +1,46 @@
+<form class="modal-sign-in"
+      *ngIf="logInForm"
+      [formGroup]="logInForm">
+  <div class="modal-container modal-container_border">
+    <div class="modal-wrapper">
+      <div class="modal-header modal-header_border-bottom">
+        <p class="modal-header__text">
+          Войди в свой аккаунт
+        </p>
+        <div class="close-button" mat-dialog-close="true">
+          <button class="close-button__item"></button>
+          <span class="close-button_cross"></span>
+        </div>
+      </div>
+      <div class="modal-main">
+        <div class="modal-main__password">
+
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="modal-main__validations">
+            <div *ngIf="email?.errors?.['required']">Введите ваше имя</div>
+            <div *ngIf="email?.errors?.['email']">email введен не корректно!</div>
+            <div *ngIf="email?.errors?.['validEmails']">Неверный домен</div>
+          </div>
+          <input type="email"
+                 placeholder="email"
+                 class="modal-main__input"
+                 formControlName="email">
+
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="modal-main__validations">
+            <div *ngIf="password?.errors?.['required']">Введите ваш пароль</div>
+            <div *ngIf="password?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+          </div>
+          <input type="password"
+                 placeholder="Password"
+                 class="modal-main__input"
+                 formControlName="password">
+
+          <app-button [title]="title"
+                      [disabled]="!logInForm.valid"
+                      (click)="logInForm.valid && authUser()"
+          ></app-button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

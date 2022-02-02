@@ -1,0 +1,12 @@
+<div class="offer_grid" *ngIf="_offers$ | async as offers">
+  <app-offer  *ngFor="let offer of offers | paginate:
+              { itemsPerPage: 8, currentPage: page }" [offers]="offer"></app-offer>
+</div>
+
+<div class="pagination-container">
+  <pagination-controls
+    (pageChange)="(page = $event) && pageClick()"
+    class="pagination-style">
+  </pagination-controls>
+</div>
+

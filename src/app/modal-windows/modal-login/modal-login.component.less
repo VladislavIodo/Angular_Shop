@@ -1,0 +1,152 @@
+@import "../../../assets/variables/variables";
+
+
+.modal-container {
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+
+  &_border {
+    background-color: @mainColor;
+    border-radius: 30px;
+    border: 3px solid @secondaryColor;
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+
+  &_border-bottom {
+    width: 100%;
+    border-bottom: 3px @secondaryColor solid;
+  }
+
+  &__text {
+    padding-left: 25px;
+  }
+}
+
+.close-button {
+  position: relative;
+
+  &__item {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: #FF3F3F;
+  }
+
+  &_cross::before {
+    position: absolute;
+    display: block;
+
+    content: '';
+    width: 15px;
+    height: 15px;
+
+    background-image: url('../../../assets/icons/cross.svg');
+
+    top: 25%;
+    left: 1.5%;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+    cursor: pointer;
+  }
+
+  &:hover &_cross::before {
+    opacity: 1;
+  }
+}
+
+.modal-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 30px;
+
+  &__validations {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    color: #FF3F3F;
+  }
+
+  &__password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__input {
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    border: 1px @secondaryColor solid;
+
+    background-color: @mainColor;
+  }
+
+  &__input::placeholder {
+    padding-left: 15px;
+    color: @secondaryColor;
+    opacity: 50%;
+    font-family: @enFonts;
+  }
+}
+
+.registration-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.existing-account {
+  position: relative;
+  padding-bottom: 25px;
+
+  &__link {
+    font-size: 10px;
+  }
+
+  &_border-bottom::before {
+    position: absolute;
+    display: none;
+    content: "";
+
+    width: 100%;
+    height: 2px;
+    margin-top: 5px;
+
+    background-color: #4D3C35;
+  }
+
+  & &__link:hover ~ &_border-bottom::before {
+    display: block;
+  }
+
+  &:hover &_border-bottom::before {
+    animation: footer-nav__link_animation .1s linear;
+  }
+}
+
+@keyframes footer-nav__link_animation {
+  from {
+    top: 20px;
+  }
+  to {
+    top: 35px;
+  }
+}

@@ -1,0 +1,23 @@
+<div *ngIf="offerDetails | async as offerDetails" class="container offer-details">
+  <div class="offer-details__img">
+    <img src="{{offerDetails.img}}" alt="offer-img">
+  </div>
+  <div class="offer-details__main">
+    <div class="offer-details__info">
+      <h1 class="offer-details__item">{{offerDetails.name}}</h1>
+      <p class="offer-details__item">Категория товара: {{offerDetails.category}}</p>
+      <p class="offer-details__item">Дизайнер: {{offerDetails.designer}}</p>
+      <p class="offer-details__item">Описание: {{offerDetails.description}}</p>
+      <p class="offer-details__item">Артикул: {{offerDetails.partNumber}}</p>
+      <p class="offer-details__item">Количество на складе: {{offerDetails.availability}}</p>
+    </div>
+    <div class="offer-details__button offer-details__item">
+      <h1 class="offer-details__item">{{offerDetails.price}}$</h1>
+      <p *ngIf="offerDetails.availability == 0">Нет в наличии</p>
+      <div class="offer-details__item offer-details__button_flex" *ngIf="offerDetails.availability > 0">
+        <app-button title="Добавить в корзину" (click)="addOfferToCart(offerDetails)"></app-button>
+        <app-button title="Купить" (click)="openDialogOrderToBuy(offerDetails)"></app-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div *ngIf="offers | async as offer">
+  <div class="canvas">
+    <canvas baseChart class="canvas_width-warehouse"
+            [data]="warehouseData"
+            [plugins]="chartPlugins"
+            [type]="barChartType"></canvas>
+  </div>
+</div>

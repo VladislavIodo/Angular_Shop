@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-wrapper">
+      <div class="map map_flex">
+        <app-map></app-map>
+      </div>
+      <div class="footer-copyright footer-copyright_flex">
+        <div class="social-networks social-networks_position">
+          <ul class="footer-nav__list">
+            <li class="footer-nav__item">
+              <a href="https://twitter.com/twitter" class="social-networks__link ">
+                <img src="../../assets/img/icons/twit.svg" alt="#">
+              </a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="https://www.instagram.com/" class="social-networks__link">
+                <img src="../../assets/img/icons/insta.svg" alt="#">
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-nav footer-nav_position">
+
+          <ul class="footer-nav__list">
+            <li class="footer-nav__item ">
+              <a href="#" class="footer-nav__link " routerLink="about">О нас</a>
+            </li>
+            <li class="footer-nav__item ">
+              <a href="#" class="footer-nav__link " routerLink="store">Каталог</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link " routerLink="cart">Корзина</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <ul class="footer-nav__list">
+            <app-logo [logoName]="logoNameItem" [color]="mainColor"></app-logo>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link ">www.carpenter.by</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="mailto:carpenter@mail.ru" class="footer-nav__link ">carpenter@mail.ru</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="tel:+375291234567" class="footer-nav__link ">+375 (29) 12-34-567</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

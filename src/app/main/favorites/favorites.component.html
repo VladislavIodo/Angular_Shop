@@ -1,0 +1,10 @@
+<section class="container favorites favorites_border">
+  <div *ngIf="getOfferInFavorites().length !== 0; else cartEmpty" class="favorites-main favorites_grid">
+    <app-offer [offers]="offer"
+               *ngFor="let offer of getOfferInFavorites()">
+    </app-offer>
+  </div>
+  <ng-template #cartEmpty class="favorites_empty">
+    <p>Ты в любой момент можешь добавить понравившуюся мебель в избранное;)</p>
+  </ng-template>
+</section>

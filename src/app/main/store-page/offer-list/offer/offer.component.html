@@ -1,0 +1,33 @@
+<div class="offer offer-row">
+  <div class="offer__img">
+    <img src="{{offers.img}}" alt="#">
+  </div>
+  <div class="offer__info offer__info_border">
+    <div class="offer__about">
+      <h3 class="offer__about_item ">{{offers.name}}</h3>
+      <p class="offer__about_item">Артикул: {{offers.partNumber}}</p>
+      <div class="offer__about_item progress-bar">
+        <p *ngIf="offers.availability == 0">Нет в наличии</p>
+        <p *ngIf="offers.availability <= 30 && offers.availability >0">Осталось {{offers.availability}} штук</p>
+        <mat-progress-bar color="warn" mode="determinate" value="{{offers.availability}}"></mat-progress-bar>
+      </div>
+    </div>
+    <div class="offer__price">
+      <h3 class="offer__price_item">{{offers.price}}$</h3>
+      <input type="checkbox" class="heart__checkbox {{isFavorite ? 'checked' : ''}}" id="{{offers._id}}" name="heart"
+             value="yes" (change)="addOfferToFavorites(offers)">
+      <label for="{{offers._id}}"></label>
+    </div>
+  </div>
+  <span class="offer__button">
+    <app-button class="offer__button_flex"
+                [title]="titleDetails"
+                [routerLink]="[offers._id, offers.name, 'details']"
+    ></app-button>
+    <app-button class="offer__button_flex"
+                [title]="titleCart"
+                *ngIf="offers.availability > 0"
+                (click)="addOfferToCart(offers)">
+    </app-button>
+  </span>
+</div>

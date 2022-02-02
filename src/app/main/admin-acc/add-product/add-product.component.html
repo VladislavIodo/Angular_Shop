@@ -1,0 +1,195 @@
+<form *ngIf="_form" class="add-product my-alternate-theme" [formGroup]="_form">
+  <h2 class="add-product__title" *ngIf="!isChange">Создать товар</h2>
+  <h2 class="add-product__title" *ngIf="isChange">Измененить товар</h2>
+  <div class="add-product__container">
+
+    <div class="add__product-picture">
+      <input type="file"
+             placeholder="Добавьте фото товара"
+             class="add-main__input-image"
+             accept="image/*"
+             required
+             (change)="_onImageChecked($event)">
+      <span class="add-main__image-title">Добавь фото товара</span>
+      <div *ngIf="_imagePreview && !_form.get('image')?.errors">
+        <img [src]="_imagePreview" alt="" class="add-main__image-preview"/>
+      </div>
+    </div>
+
+    <div class="add__product-detail">
+      <div class="add__product-container">
+        <div class="add__product">
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="add-main__validators">
+            <div *ngIf="name?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Выберите наименование</mat-label>
+            <mat-select formControlName="name">
+              <mat-optgroup class="my-alternate-theme">
+                Установите наименование!
+                <mat-option value="Стол">Стол</mat-option>
+                <mat-option value="Стул">Стул</mat-option>
+                <mat-option value="Кровать">Кровать</mat-option>
+                <mat-option value="Диван">Диван</mat-option>
+                <mat-option value="Шкаф">Шкаф</mat-option>
+                <mat-option value="Тумбочка">Тумбочка</mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="add__product">
+          <div *ngIf="category?.invalid && (category?.dirty || category?.touched)" class="add-main__validators">
+            <div *ngIf="category?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Выберите категорию</mat-label>
+            <mat-select formControlName="category">
+              <mat-optgroup class="my-alternate-theme">
+                Установите категорию!
+                <mat-option value="Столы">Столы</mat-option>
+                <mat-option value="Стулья">Стулья</mat-option>
+                <mat-option value="Кровати">Кровати</mat-option>
+                <mat-option value="Диваны">Диваны</mat-option>
+                <mat-option value="Шкафы">Шкафы</mat-option>
+                <mat-option value="Тумбочки">Тумбочки</mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="add__product">
+          <div *ngIf="designer?.invalid && (designer?.dirty || designer?.touched)" class="add-main__validators">
+            <div *ngIf="designer?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Выберите дизайнера</mat-label>
+            <mat-select formControlName="designer">
+              <mat-optgroup class="my-alternate-theme">
+                Установите дизайнера!
+                <mat-option value="Лола">Лола</mat-option>
+                <mat-option value="Генрих">Генрих</mat-option>
+                <mat-option value="Себастьян">Себастьян</mat-option>
+                <mat-option value="Чекраско">Чекраско</mat-option>
+                <mat-option value="Иван">Иван</mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="add__product-container">
+        <div>
+          <div *ngIf="availability?.invalid && (availability?.dirty || availability?.touched)"
+               class="add-main__validators">
+            <div *ngIf="availability?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <input type="text"
+                 formControlName="availability"
+                 placeholder="Количество на складе"
+                 class="add-main__input"
+          >
+        </div>
+
+        <div>
+          <div *ngIf="price?.invalid && (price?.dirty || price?.touched)" class="add-main__validators">
+            <div *ngIf="price?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <input type="text"
+                 formControlName="price"
+                 placeholder="Цена товара"
+                 class="add-main__input"
+          >
+        </div>
+
+        <div>
+          <div *ngIf="partNumber?.invalid && (partNumber?.dirty || partNumber?.touched)" class="add-main__validators">
+            <div *ngIf="partNumber?.errors?.['required']" class="errorText">Поле обязательно для заполнения!</div>
+          </div>
+          <input type="text"
+                 formControlName="partNumber"
+                 placeholder="Артикул"
+                 class="add-main__input"
+          >
+        </div>
+
+      </div>
+
+      <div>
+        <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="add-main__validators">
+        </div>
+        <input type="text"
+               formControlName="description"
+               placeholder="Описание товара"
+               class="add-main__input"
+        >
+      </div>
+
+      <app-button [title]="productButton.addProduct"
+                  [disabled]="!_form.valid"
+                  *ngIf="!isChange"
+                  (click)="_form.valid && _addProduct()"
+                  class="add__product-button"
+      ></app-button>
+
+      <div class="edit__product-container" *ngIf="isChange">
+        <app-button [title]="productButton.editProduct"
+                    (click)="_form.valid && submitEditProduct(partNumber?.value)"
+                    class="edit__product-button"
+        ></app-button>
+        <app-button [title]="productButton.cancelProduct"
+                    (click)="clearForm()"
+                    class="edit__product-button"
+        ></app-button>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+<div class="list">
+  <table class="list-container">
+    <caption class="list-title">Список всех товаров</caption>
+    <thead>
+    <tr class="list-tr">
+      <th>No.</th>
+      <th>Фото товара</th>
+      <th>Назавани</th>
+      <th>Дизайнер</th>
+      <th>Количество</th>
+      <th>Цена</th>
+      <th>Описание</th>
+      <th>Управление</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let offer of (reloadTrigger$ | async) | paginate:
+ { itemsPerPage: 3, currentPage: page }">
+      <td class="list-partNumber">{{offer.partNumber}}</td>
+      <td><img class="list-img" src="{{offer.img}}" alt=""></td>
+      <td>{{offer.name}}</td>
+      <td>{{offer.designer}}</td>
+      <td>{{offer.availability}}</td>
+      <td>{{offer.price}}</td>
+      <td>{{offer.description}}</td>
+      <td class="list-buttons">
+        <app-button [title]="productButton.deleteProduct"
+                    (click)="openDialog(offer.partNumber)"
+                    class="add__product-button"
+        ></app-button>
+        <app-button [title]="productButton.editProduct"
+                    (click)="editProduct(offer.partNumber)"
+                    class="add__product-button"
+        ></app-button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination-container">
+  <pagination-controls
+    (pageChange)="(page = $event) && pageClick()"
+    class="pagination-style">
+  </pagination-controls>
+</div>

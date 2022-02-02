@@ -1,0 +1,48 @@
+@secondaryColor: #4D3C35;
+@mainColor: #EBE2E2;
+@ruFonts: 'Revalia', cursive;
+@enFonts: 'Dangrek', cursive;
+
+.modal-delete {
+  &__container {
+    max-width: 480px;
+    width: 100%;
+    max-height: 300px;
+    margin: auto;
+
+    background-color: @mainColor;
+    border-radius: 30px;
+    border: 3px solid @secondaryColor;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.modal {
+  &-text {
+    padding: 20px;
+    font-size: 15px;
+    width: 100%;
+    border-bottom: 3px @secondaryColor solid;
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 15px;
+  }
+}
+
+@keyframes footer-nav__link_animation {
+  from {
+    top: 20px;
+  }
+  to {
+    top: 35px;
+  }
+}

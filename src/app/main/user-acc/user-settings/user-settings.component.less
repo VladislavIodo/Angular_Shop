@@ -1,0 +1,34 @@
+@import "../../../../assets/variables/variables";
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: 15px;
+  color: @secondaryColor;
+  &_margin + &_margin{
+  margin-top: 10px;
+  }
+
+  &_border {
+    border: 3px solid @secondaryColor;
+    border-radius: 35px;
+    padding: 15px;
+    &-bottom{
+      border-bottom: 3px solid @secondaryColor;
+      width: 100%;
+
+    }
+  }
+
+  &-email, &-password {
+    display: flex;
+    flex-direction: column;
+  }
+  &__validations{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    color: #FF3F3F;
+  }
+}

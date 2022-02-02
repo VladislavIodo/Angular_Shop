@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Carpenter</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="./assets/fonts/gilroy/stylesheet.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+  <app-root></app-root>
+  <script type="text/javascript">
+    ymaps.ready(init);
+    function init() {
+      var myMap = new ymaps.Map("map", {
+          center: [53.8756283, 27.4974586],
+          zoom: 15
+        }),
+        myGeoObject = new ymaps.GeoObject({
+          geometry: {
+            type: "Point",
+            coordinates: [53.8756283, 27.4974586]
+          },
+          properties: {
+            iconContent: 'Мы тутЪ',
+            hintContent: 'Купить кровать',
+          }
+        }, {
+          preset: 'islands#blackStretchyIcon',
+          draggable: false,
+          iconColor: '#4D3C35'
+        })
+      myMap.geoObjects
+        .add(myGeoObject)
+    }
+  </script>
+</body>
+</html>

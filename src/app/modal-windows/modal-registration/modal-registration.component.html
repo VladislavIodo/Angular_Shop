@@ -1,0 +1,109 @@
+<form class="modal-registration"
+      mat-dialog-content
+      *ngIf="registrationForm"
+      [formGroup]="registrationForm">
+  <div class="modal-container modal-container_border">
+    <div class="modal-wrapper">
+      <div class="modal-header modal-header_border-bottom modal-header_padding">
+        <p class="modal-header__text">
+          Создай свой аккаунт
+        </p>
+        <div class="close-button" mat-dialog-close="true">
+          <button class="close-button__item"></button>
+          <span class="close-button_cross"></span>
+        </div>
+      </div>
+      <div class="modal-main">
+        <div class="modal-main__user-data">
+          <div class="modal-main__user-name">
+
+            <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="modal-main__validations">
+              <div *ngIf="userName?.errors?.['required']">Поле обязательно для заполнения!</div>
+            </div>
+            <input type="text"
+                   placeholder="Имя"
+                   class="modal-main__input"
+                   formControlName="userName">
+
+            <div *ngIf="userSurname?.invalid && (userSurname?.dirty || userSurname?.touched)"
+                 class="modal-main__validations">
+              <div *ngIf="userSurname?.errors?.['required']">Поле обязательно для заполнения!</div>
+            </div>
+            <input type="text"
+                   placeholder="Фамилия"
+                   class="modal-main__input"
+                   formControlName="userSurname">
+
+            <div *ngIf="nickName?.invalid && (nickName?.dirty || nickName?.touched)" class="modal-main__validations">
+              <div *ngIf="nickName?.errors?.['required']">Поле обязательно для заполнения!</div>
+            </div>
+            <input type="text"
+                   placeholder="Псевдоним"
+                   class="modal-main__input"
+                   formControlName="nickName">
+          </div>
+
+          <div class="modal-main__user-avatar">
+            <label class="form-label" for="file">добавьте свое фото</label>
+            <input accept="image/*"
+                   class="modal-main__input-avatar"
+                   id="file"
+                   required
+                   type="file"
+                   (change)="addImage($event)">
+            <div *ngIf="showImage && !registrationForm.get('avatar')?.errors" class="ea-dog-form__image-container">
+              <img class="modal-main__avatar-preview" [src]="showImage" alt="Uploaded dog image"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-main__password-block">
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="modal-main__validations">
+            <div *ngIf="email?.errors?.['required']">Поле обязательно для заполнения!</div>
+            <div *ngIf="email?.errors?.['userEmailValidator']">Email адрес занят</div>
+            <div *ngIf="email?.errors?.['email']">email введен не корректно!</div>
+            <div *ngIf="email?.errors?.['validEmails']">Неверный домен</div>
+          </div>
+          <input type="email"
+                 placeholder="Email"
+                 class="modal-main__input"
+                 formControlName="email">
+
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="modal-main__validations">
+            <div *ngIf="password?.errors?.['required']">Поле обязательно для заполнения!</div>
+            <div *ngIf="password?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+            <div *ngIf="password?.errors?.['maxlength']">Введённый пароль слишком длинный!</div>
+          </div>
+
+          <input type="password"
+                 placeholder="Пароль"
+                 class="modal-main__input"
+                 formControlName="password">
+
+          <div *ngIf="repeatPassword?.invalid && (repeatPassword?.dirty || repeatPassword?.touched)"
+               class="modal-main__validations">
+            <div *ngIf="repeatPassword?.errors?.['required']">Повторите пароль!</div>
+            <div *ngIf="repeatPassword?.errors?.['minlength']">Введённый пароль слишком короткий!</div>
+            <div *ngIf="repeatPassword?.errors?.['maxlength']">Введённый пароль слишком длинный!</div>
+            <div *ngIf="repeatPassword?.errors?.['compare']">Пароли не совпадают!</div>
+          </div>
+          <input type="password"
+                 placeholder="Повторите пароль"
+                 class="modal-main__input"
+                 formControlName="repeatPassword">
+          <app-button *ngIf="registrationForm.valid"
+                      [title]="title"
+                      (click)="registrationUser()"
+          ></app-button>
+          <div class="existing-account">
+            <span (click)="openLogIn()" class="existing-account__link">Можешь войти в уже существующий
+              аккаунт
+            </span>
+            <span class="existing-account_border-bottom"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

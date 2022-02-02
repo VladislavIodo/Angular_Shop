@@ -1,0 +1,98 @@
+@import "assets/variables/variables";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: @mainColor;
+  font-family: @ruFonts;
+}
+
+a {
+  text-decoration: none;
+  color: @secondaryColor;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1950px;
+}
+
+img {
+  width: 100%;
+}
+
+.mat-dialog {
+  &-container {
+    box-shadow: none;
+    background: none;
+    color: @secondaryColor;
+  }
+
+  &-content {
+    padding: 0 !important;
+    max-height: 120vh !important;
+  }
+
+  &-container::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.mat-menu {
+  &-panel {
+    background-color: @mainColor;
+    border-radius: 15px !important;
+    border: 3px solid @secondaryColor;
+  }
+
+  &-item {
+    color: @secondaryColor;
+    font-family: @ruFonts;
+  }
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar {
+  &-buffer {
+    background-color: @mainColor;
+    border: 3px solid @secondaryColor;
+  }
+
+  &-fill::after {
+    background-color: @secondaryColor;
+  }
+}
+
+.ng-tns-c137-2 ng-star-inserted mat-stepper-horizontal mat-stepper-label-position-end {
+  font-family: @ruFonts !important;
+}
+
+.mat-stepper-horizontal-line {
+  background-color: @secondaryColor;
+  height: 3px !important;
+  border-radius: 3px;
+}
+
+.mat-vertical-content {
+  padding: 0 24px 24px 12px !important;
+}
+
+.mat-select-panel {
+  background-color: @mainColor;
+  border-radius: 35px;
+  border: 3px solid @secondaryColor;
+}
+
+.mat-icon-button.mat-button-disabled.mat-button-disabled {
+  color: inherit;
+}

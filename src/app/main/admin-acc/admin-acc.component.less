@@ -1,0 +1,76 @@
+@import "../../../assets/variables/variables";
+
+
+.admin {
+  margin: 3px 0 3px 3px;
+
+  &-window {
+    width: 100%;
+    height: 100vh;
+    background-color: @mainColor;
+  }
+}
+
+.admin-panel {
+  color: @secondaryColor;
+
+  background-color: @mainColor;
+  border: 2px solid @secondaryColor;
+  border-radius: 25px;
+}
+
+.admin-panel-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.info-title {
+  margin: 5px;
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  max-width: 120px;
+  width: 100%;
+  align-items: stretch;
+
+  & + & {
+    padding-top: 15px;
+  }
+}
+
+.admins-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+
+@media (max-width: 1300px) {
+  .admin-title {
+    font-size: 3vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-title {
+    font-size: 2vh;
+  }
+
+  .admin-panel {
+    width: 25%;
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+}
+
+
+
+
